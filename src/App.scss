@@ -7,9 +7,14 @@
   font-family: "ProductSans";
 }
 body {
-  background-color: #283638;
+  display: grid;
+  background-color: white;
+  justify-content: center;
+  align-content: center;
 }
 
 .App {
   text-align: center;
+  width: 335px;
+  background-color: #283638;
 }
