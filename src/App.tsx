@@ -20,6 +20,8 @@ const App: FC = () => {
       <Calculate expression={input.expression} operationId={input.operationId} displayExpression={input.displayExpression} />
       {calculatorInputs}
     </div>
+
+
   );
 }
 
