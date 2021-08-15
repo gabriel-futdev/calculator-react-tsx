@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "ProductSans";
+  font-style: normal;
+  src: url(./assets/fonts/ProductSans-Thin.ttf) format("truetype");
+}
+* {
+  font-family: "ProductSans";
+}
+body {
+  background-color: #283638;
+}
+
+.App {
+  text-align: center;
+}

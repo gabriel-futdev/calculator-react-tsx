@@ -1,0 +1,18 @@
+.input {
+  height: 160px;
+  padding-left: 20px;
+  padding-right: 20px;
+  .history {
+    font-size: 20px;
+    text-align: right;
+    color: grey;
+    height: 100px;
+  }
+  .to-calculate {
+    display: block;
+    font-size: 50px;
+    text-align: right;
+    color: white;
+    height: 60px;
+  }
+}

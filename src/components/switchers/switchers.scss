@@ -1,0 +1,16 @@
+button {
+  letter-spacing: 0.1em;
+
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  margin: 0.25rem;
+  color: white;
+
+  &.selected {
+    background-color: white;
+    border-radius: 25px;
+    color: teal;
+  }
+}

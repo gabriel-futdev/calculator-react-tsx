@@ -1,0 +1,38 @@
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  // min-height: 100vh;
+  top: 0;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(5, 70px);
+
+  button {
+    cursor: pointer;
+    font-size: 25px;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 50%;
+    color: white;
+    &:hover {
+      background-color: teal;
+    }
+
+    &.btn-circled-white {
+      background-color: white;
+      color: teal;
+
+      &:hover {
+        background-color: teal;
+        color: white;
+      }
+    }
+    &.btn-special {
+      background-color: #6c817e;
+
+      &:hover {
+        background-color: teal;
+        color: white;
+      }
+    }
+  }
+}
