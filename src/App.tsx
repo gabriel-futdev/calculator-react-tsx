@@ -1,9 +1,10 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import Switchers from './components/switchers/switchers';
-import Calculate from './components/calculate/calculate';
+
+import React, { FC } from 'react';
+
+import Calculate from './components/calculate-display/calculate-display';
 import CalculatorInputs from './components/calculator-inputs/calculator-inputs';
+import Switchers from './components/switchers/switchers';
 
 
 
@@ -11,13 +12,13 @@ import CalculatorInputs from './components/calculator-inputs/calculator-inputs';
 
 const App: FC = () => {
 
-  const { calculatorInputs, input } = CalculatorInputs();
-
+  const { calculatorInputs, currentInput, previousInput } = CalculatorInputs();
+  const { theme, switchers } = Switchers();
   return (
 
-    <div className="App">
-      <Switchers />
-      <Calculate expression={input.expression} operationId={input.operationId} displayExpression={input.displayExpression} />
+    <div className={`App ${theme}`}>
+      {switchers}
+      <Calculate currentInput={currentInput} previousInput={previousInput} />
       {calculatorInputs}
     </div>
 

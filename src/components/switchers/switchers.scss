@@ -1,16 +1,87 @@
-button {
-  letter-spacing: 0.1em;
+@import "../../assets/constants/scss/styles.constants.scss";
 
-  background: none;
-  border: none;
-  outline: none;
-  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  margin: 0.25rem;
-  color: white;
+.App {
+  --selected-background-color: var(--accent-color);
+  --selected-text-color: white;
+}
+.App.dark {
+  --selected-background-color: white;
+  --selected-text-color: var(--accent-color);
+}
+.switchers-parent {
+  height: 10vh;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-  &.selected {
-    background-color: white;
+  .theme-toggle {
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-duration);
+    aspect-ratio: 1;
+    position: relative;
+    .toggle-theme-icon {
+      height: 24px;
+      width: 24px;
+      fill: var(--text-color);
+      z-index: 2;
+    }
+    .ripple-effect {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      transform-origin: left;
+      // scale: 40;
+      background-color: var(--ripple-color);
+      scale: 0;
+      &.on {
+        animation: takeover calc(var(--transition-duration) * 0.5);
+      }
+    }
+    @keyframes takeover {
+      0% {
+        scale: 0;
+      }
+      99% {
+        scale: 40;
+      }
+      100% {
+        scale: 50;
+      }
+    }
+  }
+
+  button {
+    background: none;
+    outline: none;
     border-radius: 25px;
-    color: teal;
+    border: none;
+    color: var(--selected-text-color);
+    cursor: pointer;
+    padding: 5px 15px 5px 15px;
+    -webkit-tap-highlight-color: transparent;
+    transition: fade, var(--transition-duration);
+    letter-spacing: 0.1rem;
+    &.selected {
+      background-color: var(--selected-background-color);
+      border: none;
+      font-weight: 900;
+    }
+  }
+  .dummy {
+    height: 40px;
+    width: 40px;
   }
 }

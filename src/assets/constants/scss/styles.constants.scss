@@ -1,0 +1,24 @@
+body {
+  -webkit-tap-highlight-color: transparent;
+  background-color: black;
+
+  --accent-color: teal;
+  --background-color: white;
+  --text-color: #283638;
+  --transition-duration: 2s;
+  --ripple-color: #283638;
+  --operation-button-background-color: none;
+  --operation-button-text-color: var(--accent-color);
+  animation: eas 1s;
+  .App.dark {
+    --ripple-color: white;
+    --accent-color: teal;
+    --background-color: #283638;
+    --text-color: white;
+    --operation-button-background-color: white;
+    animation: eas 1s;
+  }
+
+  @keyframes eas {
+  }
+}

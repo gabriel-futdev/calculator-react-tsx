@@ -1,0 +1,35 @@
+@import "../../assets/constants/scss/styles.constants.scss";
+
+.output {
+  height: 30vh;
+  position: relative;
+  // display: grid;
+  // grid-template-rows: minmax(10px, auto);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  width: 80%;
+  margin: auto;
+  div.previous-output {
+    font-size: 5vmin;
+    color: grey;
+    width: 80%;
+    text-align: right;
+    width: 100%;
+    transition: calc(var(--transition-duration));
+  }
+  div.current-output {
+    font-size: 10vmin;
+    color: var(--text-color);
+    font-weight: bolder;
+    padding-bottom: 7.5vmin;
+    width: 80%;
+    text-align: right;
+    width: 100%;
+    transition: calc(var(--transition-duration));
+  }
+}
