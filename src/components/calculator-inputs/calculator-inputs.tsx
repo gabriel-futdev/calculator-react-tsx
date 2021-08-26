@@ -1,16 +1,20 @@
 import './calculator-inputs.scss';
 
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
+import { ICalculatorHistory } from './calculator-input.interface';
 import { OPERAND } from './operand.enum';
 
-
-const CalculatorInputs = () => {
+const CalculatorInputs = (enableHistory: Boolean) => {
+  const calculatorApiBaseUrl = 'https://calculator-history-api.herokuapp.com/api/history';
   let [currentInput, setCurrentInput] = useState<string>('0');
   let [previousInput, setPreviousInput] = useState<string>('');
   let [_currentInput, _setCurrentInput] = useState<number>(0);
   let [_previousInput, _setPreviousInput] = useState<number>(0);
   const [currentOperation, setOperation] = useState<OPERAND>(OPERAND.undefined);
+  const [history, setHistory] = useState<ICalculatorHistory | undefined>(undefined);
+
 
   const appendNumber = (value: string): void => {
     if (currentInput.includes('.') && value === '.') return;
@@ -79,26 +83,36 @@ const CalculatorInputs = () => {
   }
 
   const equals = () => {
+    let expr = '';
+    let rslt = '';
     switch (currentOperation) {
       case OPERAND.ADD:
         const sum = _previousInput + _currentInput;
         const sumRounded = round2deci(sum);
         setCurrentInput(sumRounded.toString());
+        expr = `${_previousInput}+${_currentInput}`;
+        rslt = `${sumRounded}`;
         break;
       case OPERAND.SUBTRACT:
         const difference = _previousInput - _currentInput;
         const differenceRounded = round2deci(difference);
         setCurrentInput(differenceRounded.toString());
+        expr = `${_previousInput}-${_currentInput}`;
+        rslt = `${differenceRounded}`;
         break;
       case OPERAND.MULTIPLY:
         const product = _previousInput * _currentInput;
         const productRounded = round2deci(product);
         setCurrentInput(productRounded.toString());
+        expr = `${_previousInput}*${_currentInput}`;
+        rslt = `${productRounded}`;
         break;
       case OPERAND.DIVIDE:
         const qoutient = _previousInput / _currentInput;
         const qoutientRounded = round2deci(qoutient);
         setCurrentInput(qoutientRounded.toString());
+        expr = `${_previousInput}/${_currentInput}`;
+        rslt = `${qoutientRounded}`;
         break;
       default:
         return;
@@ -106,6 +120,7 @@ const CalculatorInputs = () => {
     setPreviousInput('');
     _setPreviousInput(0);
     setOperation(OPERAND.undefined);
+    setHistory({ expression: expr, result: rslt });
   }
 
   const percent = () => {
@@ -126,6 +141,18 @@ const CalculatorInputs = () => {
   const round2deci = ((number: number) => {
     return Math.round((number + Number.EPSILON) * 100) / 100;
   });
+
+  useEffect(() => {
+    if (enableHistory === false) return;
+    if (!history) return;
+
+    axios.post(calculatorApiBaseUrl, history)
+      .then(res => {
+        console.log(res);
+      }, error => {
+        console.log('error: ', error);
+      });
+  }, [history])
 
   return {
     currentInput,

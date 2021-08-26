@@ -11,9 +11,9 @@ import Switchers from './components/switchers/switchers';
 // https://dribbble.com/shots/5021040-Daily-UI-004-Calculator
 
 const App: FC = () => {
+  const { theme, historyOn, switchers } = Switchers();
+  const { calculatorInputs, currentInput, previousInput } = CalculatorInputs(historyOn);
 
-  const { calculatorInputs, currentInput, previousInput } = CalculatorInputs();
-  const { theme, switchers } = Switchers();
   return (
 
     <div className={`App ${theme}`}>

@@ -80,8 +80,15 @@
       font-weight: 900;
     }
   }
-  .dummy {
-    height: 40px;
-    width: 40px;
+  .log {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: var(--selected-text-color);
+    &.on .log-icon {
+      border-radius: 50%;
+      background-color: var(--selected-background-color);
+    }
   }
 }
